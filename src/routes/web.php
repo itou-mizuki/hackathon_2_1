@@ -6,13 +6,16 @@ use Illuminate\Support\Facades\Route;
 // Todo作成ページ
 =======
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\SignupController;
 
 
 Route::get('/', function () {
     return view('welcome');
 });
 
+
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [LoginController::class, 'login']);  // 追加
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');  // 追加
 
 // 作成ボタンを押したら次のページへ
 Route::post('/todo/create', function () {
@@ -30,11 +33,4 @@ Route::get('/todo/list', function () {
 Route::get('/login', [LoginController::class, 'showLoginForm'])
     ->name('login');
 
-// signup：ログイン済みなら login にリダイレクト
-Route::get('/signup', [SignupController::class, 'create'])
-    ->middleware('guest')
-    ->name('signup.create');
-
-Route::post('/signup', [SignupController::class, 'store'])
-    ->middleware('guest')
-    ->name('signup.store');
+// ダッシュボードのルートは削除（後で作成予定のため）
