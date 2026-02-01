@@ -1,13 +1,13 @@
 <nav class="navigation">
     <div class="footer-images">
         <a href="/">
-            <img src="{{ asset('img/home.jpg') }}" alt="HOME" class="footer-img">
+            <img src="{{ asset('img/HOME.jpg') }}" alt="HOME" class="footer-img">
         </a>
         <a href="/achievement">
             <img src="{{ asset('img/achievement.jpg') }}" alt="Achievement" class="footer-img">
         </a>
         <a href="/mypage">
-            <img src="{{ asset('img/my page.jpg') }}" alt="My Page" class="footer-img">
+            <img src="{{ asset('img/My page.jpg') }}" alt="My Page" class="footer-img">
         </a>
     </div>
 </nav>
@@ -18,7 +18,7 @@
         bottom: 0;
         left: 0;
         right: 0;
-        background: #28a0b0;
+        background: #308e9b;
         display: flex;
         justify-content: center;
         align-items: center;
