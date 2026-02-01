@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 
 
 // Todo作成ページ
-=======
 use App\Http\Controllers\Auth\LoginController;
 
 

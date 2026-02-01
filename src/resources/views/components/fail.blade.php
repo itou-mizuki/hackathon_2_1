@@ -1,7 +1,6 @@
 {{-- resources/views/components/fail-screen.blade.php --}}
 @props([
   'id' => 'fail-screen',
-  'image' => null,
   'message' => '次こそ逃げ切ろう！',
 ])
 
@@ -15,11 +14,11 @@
     <button type="button" class="fail-close" data-fail-close aria-label="閉じる">×</button>
 
     <div class="fail-image">
-      @if($image)
-        <img src="{{ $image }}" alt="Fail" />
-      @else
-        <div class="fail-image-placeholder">[FAIL画像をここに配置]</div>
-      @endif
+      {{-- ✅ ここに画像を埋め込み（public/img配下） --}}
+      <img
+        src="{{ asset('img/スクリーンショット 2026-02-01 16.50.16.png') }}"
+        alt="Fail"
+      />
     </div>
 
     <p id="{{ $id }}-title" class="fail-text">{{ $message }}</p>
@@ -78,9 +77,6 @@
     object-fit: cover;
     display: block;
   }
-  .fail-image-placeholder{
-    color: #999;
-  }
 
   .fail-text{
     font-size: 24px;
@@ -93,11 +89,9 @@
 
 <script>
 (function () {
-  // ✅ このコンポーネントのroot要素を「id」で取る（Bladeでidは必ず展開される）
   const overlay = document.getElementById('{{ $id }}');
   if (!overlay) return;
 
-  // ✅ 二重初期化防止
   if (overlay.dataset.inited === '1') return;
   overlay.dataset.inited = '1';
 
@@ -116,25 +110,20 @@
     document.body.style.overflow = '';
   }
 
-  // ボタンで閉じる
   if (closeBtn) closeBtn.addEventListener('click', closeFailScreen);
 
-  // 背景クリックで閉じる（モーダル外）
   overlay.addEventListener('click', function (e) {
     if (e.target === overlay) closeFailScreen();
   });
 
-  // Esc で閉じる
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && overlay.classList.contains('is-open')) {
       closeFailScreen();
     }
   });
 
-  // ✅ グローバル公開（複数設置したい場合にも対応）
   window.FailScreen = window.FailScreen || {};
   window.FailScreen.open = function(targetId){
-    // targetId指定があればそのidのモーダルを開く
     if (targetId && targetId !== overlay.id) return;
     openFailScreen();
   };
