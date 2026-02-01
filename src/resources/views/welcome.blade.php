@@ -14,7 +14,7 @@
 
         body {
             font-family: 'Noto Sans JP', sans-serif;
-            background: url("{{ asset('img/todo記入欄 (1).jpg') }}") center bottom no-repeat;
+            background: url("{{{ url('img/todo記入欄%20(1).jpg') }}}") center bottom no-repeat;
             background-size: cover;
             background-color: #7DD3D3;
             min-height: 100vh;
